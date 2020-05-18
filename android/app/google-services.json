@@ -1,0 +1,40 @@
+{
+    "project_info": {
+        "project_number": "229917114017",
+        "firebase_url": "https://juxt-flutter.firebaseio.com",
+        "project_id": "juxt-flutter",
+        "storage_bucket": "juxt-flutter.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:229917114017:android:27808bbe46aa26c54e7ae0",
+                "android_client_info": {
+                    "package_name": "com.example.juxt"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "229917114017-vdrr182oidfntifnhbaf6ddiro9q8apu.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCXeHwHxszVra2LCrGLYVnBqUlPLqTnJwY"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "229917114017-vdrr182oidfntifnhbaf6ddiro9q8apu.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
