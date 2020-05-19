@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:juxt/screens/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   static final String id = 'signup_screen';
@@ -9,12 +11,25 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _name, _email, _password;
+  String _email, _password, _name;
 
-  _submit() {
+  Future<void> _submit() async {
+    final FormState = _formKey.currentState;
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(_name);
+      try {
+        FirebaseUser user = (await FirebaseAuth.instance
+                .createUserWithEmailAndPassword(
+                    email: _email, password: _password))
+            .user;
+        user.sendEmailVerification();
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      } catch (e) {
+        print(e.message);
+      }
+
       print(_email);
       print(_password);
       //logging in user w/ Firebase
