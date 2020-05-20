@@ -107,6 +107,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Sign Up',
                           style: TextStyle(color: Colors.white, fontSize: 18.0),
                         )),
+                  ),
+                  SizedBox(height: 80.0),
+                  Container(
+                    width: 250.0,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      },
+                      color: Color(0xfff2a365),
+                      padding: EdgeInsets.all(15.0),
+                      child: Text(
+                        'God Mode',
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                    ),
                   )
                 ],
               ),

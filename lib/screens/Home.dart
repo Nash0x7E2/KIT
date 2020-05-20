@@ -12,9 +12,24 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home ${widget.user.email}'),
+      body: Center(child: Text('Content will go here!')),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Container(
+          height: 65.0,
+          width: 65.0,
+          child: FloatingActionButton(
+            //Action to add content
+            onPressed: null,
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            backgroundColor: Color(0xff30475e),
+          ),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
