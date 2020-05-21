@@ -17,98 +17,26 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FlatButton(
-          onPressed: () => AuthService.logout(context),
-          child: Text('Logout'),
+        body: Center(
+          child: FlatButton(
+            onPressed: () => AuthService.logout(context),
+            child: Text('Logout'),
+          ),
         ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Container(
-          height: 65.0,
-          width: 65.0,
-          child: RadialMenu(),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
-  }
-}
-
-class RadialMenu extends StatefulWidget {
-  createState() => _RadialMenuState();
-}
-
-class _RadialMenuState extends State<RadialMenu>
-    with SingleTickerProviderStateMixin {
-  AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller =
-        AnimationController(duration: Duration(milliseconds: 900), vsync: this);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RadialAnimation(controller: controller);
-  }
-}
-
-class RadialAnimation extends StatelessWidget {
-  final AnimationController controller;
-  RadialAnimation({Key key, this.controller})
-      : scale = Tween<double>(
-          begin: 1.5,
-          end: 0.0,
-        ).animate(
-          CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn),
-        ),
-        super(key: key);
-
-  final AnimationController animationController;
-  final Animation<double> scale;
-
-  build(context) {
-    return AnimatedBuilder(
-        animation: controller,
-        builder: (context, builder) {
-          return Stack(
-            children: <Widget>[
-              Transform.scale(
-                scale: scale.value - 1,
-                child: FloatingActionButton(
-                  child: Icon(
-                    FontAwesomeIcons.times,
-                    color: Colors.white,
-                  ),
-                  onPressed: _close,
-                  backgroundColor: Color(0xff30475e),
-                ),
-              ),
-              Transform.scale(
-                scale: scale.value,
-                child: FloatingActionButton(
-                  child: Icon(
-                    FontAwesomeIcons.plus,
-                    color: Colors.white,
-                  ),
-                  onPressed: _close,
-                  backgroundColor: Color(0xff30475e),
-                ),
-              ),
-            ],
-          );
-        });
-  }
-
-  _open() {
-    controller.forward();
-  }
-
-  _close() {
-    controller.reverse();
+        floatingActionButton: Stack(children: <Widget>[
+          (FloatingActionButton(
+            onPressed: (null),
+            child: Icon(FontAwesomeIcons.plus),
+            foregroundColor: Colors.white,
+            backgroundColor: Color(0xff30475e),
+          )),
+          FloatingActionButton(
+            onPressed: (null),
+            child: Icon(FontAwesomeIcons.plus),
+            foregroundColor: Colors.white,
+            backgroundColor: Color(0xff30475e),
+          ),
+        ]),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 }
