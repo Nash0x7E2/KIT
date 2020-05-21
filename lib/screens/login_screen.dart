@@ -27,10 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
       } catch (e) {
         print(e.message);
       }
-
-      print(_email);
-      print(_password);
-      //logging in user w/ Firebase
     }
   }
 
