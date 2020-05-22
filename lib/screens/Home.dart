@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:juxt/components/nav_button.dart';
+import 'package:juxt/screens/create_post.dart';
+import 'package:juxt/screens/feed_screen.dart';
+import 'package:juxt/screens/profile_screen.dart';
+import 'package:juxt/screens/search_screen.dart';
+import 'package:juxt/screens/notification_screen.dart';
+import 'dart:math';
+import 'package:vector_math/vector_math.dart' show radians, Vector3;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:juxt/services/auth_service.dart';
-import 'package:juxt/screens/login_screen.dart';
-import 'package:vector_math/vector_math.dart' show radians;
 
 class Home extends StatefulWidget {
   static final String id = 'home';
@@ -14,29 +19,52 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int currentTab = 0;
+  PageController _pageController;
+
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-          child: FlatButton(
-            onPressed: () => AuthService.logout(context),
-            child: Text('Logout'),
-          ),
-        ),
-        floatingActionButton: Stack(children: <Widget>[
-          (FloatingActionButton(
-            onPressed: (null),
-            child: Icon(FontAwesomeIcons.plus),
-            foregroundColor: Colors.white,
-            backgroundColor: Color(0xff30475e),
-          )),
-          FloatingActionButton(
-            onPressed: (null),
-            child: Icon(FontAwesomeIcons.plus),
-            foregroundColor: Colors.white,
-            backgroundColor: Color(0xff30475e),
-          ),
-        ]),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      body: PageView(
+        controller: _pageController,
+        children: <Widget>[
+          FeedScreen(),
+          SearchScreen(),
+          CreatePostScreen(),
+          NotificationScreen(),
+          ProfileScreen(),
+        ],
+        onPageChanged: (int index) {
+          setState(() {
+            currentTab = index;
+          });
+        },
+      ),
+      bottomNavigationBar: SizedBox(
+          height: 500.0,
+          child:
+              RadialMenu()), //box height is resticting the press gestures on buttons
+    );
   }
 }
+
+// Container(
+//   child: FlatButton(
+//     onPressed: () => AuthService.logout(context),
+//     child: Text('Logout'),
+//   ),
+// ),
+// Column(
+//   crossAxisAlignment: CrossAxisAlignment.center,
+//   mainAxisAlignment: MainAxisAlignment.end,
+//   children: <Widget>[
+//     Container(alignment: Alignment.bottomCenter, child: RadialMenu()),
+//   ],
+// ),

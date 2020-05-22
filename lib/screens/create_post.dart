@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CreatePost extends StatefulWidget {
+class CreatePostScreen extends StatefulWidget {
   @override
-  _CreatePostState createState() => _CreatePostState();
+  _CreatePostScreenState createState() => _CreatePostScreenState();
 }
 
-class _CreatePostState extends State<CreatePost> {
+class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      body: Center(
+          child: Text(
+        'Post',
+      )),
     );
   }
 }
