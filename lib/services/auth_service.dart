@@ -2,14 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:juxt/screens/home.dart';
-import 'package:juxt/main.dart';
 import 'package:juxt/screens/login_screen.dart';
-import "package:juxt/screens/login_screen.dart";
 
 class AuthService {
   static final _auth = FirebaseAuth.instance;
   static final _firestore = Firestore.instance;
-
+  //TODO: These don't really need to be static, you can create a single instace of the class and "provide" it's value to the children.
   static void signUpUser(
       BuildContext context, String name, String email, String password) async {
     try {

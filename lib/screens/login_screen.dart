@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email, _password;
 
   Future<void> _submit() async {
-    final FormState = _formKey.currentState;
+
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {

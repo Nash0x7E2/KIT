@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:juxt/screens/home.dart';
 import 'package:juxt/screens/login_screen.dart';
 import 'package:juxt/screens/signup_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,14 +11,15 @@ void main() {
 class MyApp extends StatelessWidget {
   Widget _getScreenID() {
     return StreamBuilder<FirebaseUser>(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
-        builder: (BuildContext contex, snapShot) {
-          if (snapShot.hasData) {
-            return Home();
-          } else {
-            return LoginScreen();
-          }
-        });
+      stream: FirebaseAuth.instance.onAuthStateChanged,
+      builder: (BuildContext contex, snapShot) {
+        if (snapShot.hasData) {
+          return Home();
+        } else {
+          return LoginScreen();
+        }
+      },
+    );
   }
 
   // This widget is the root of your application.
